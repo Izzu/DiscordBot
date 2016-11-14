@@ -26,7 +26,7 @@ namespace DiscordBot
                 await discord.Connect("MjQ3NDkwNTc0MTkyNDc2MTYx.CwqEfw.GySquE25grhI_WXXbx1mXD5_RHI", TokenType.Bot);
             });
 
-            discord.UsingCommands(x => 
+            discord.UsingCommands(x =>
             {
                 x.PrefixChar = '!';
                 x.HelpMode = HelpMode.Public;
@@ -41,7 +41,7 @@ namespace DiscordBot
                     await e.Channel.SendMessage("Hi");
                 });
         }
-        
+
 
         private void Log(object sender, LogMessageEventArgs e)
         {
