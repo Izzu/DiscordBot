@@ -21,25 +21,29 @@ namespace DiscordBot
                     x.LogHandler = Log;
                 });
 
-            discord.ExecuteAndWait(async () =>
-            {
-                await discord.Connect("MjQ3NDkwNTc0MTkyNDc2MTYx.CwqEfw.GySquE25grhI_WXXbx1mXD5_RHI", TokenType.Bot);
-            });
-
+            //command instigator
             discord.UsingCommands(x =>
             {
-                x.PrefixChar = '!';
+                x.PrefixChar = '/';
                 x.HelpMode = HelpMode.Public;
-                x.AllowMentionPrefix = true;
             });
 
-            //var commands = discord.GetService<CommandService>();
+            //command service variable
+            var commands = discord.GetService<CommandService>();
 
-            discord.GetService<CommandService>().CreateCommand("hello")
+            //hello command
+            commands.CreateCommand("hello")
+                .Alias("hi")
+                .Description("Says hello back.")
                 .Do(async (e) =>
                 {
                     await e.Channel.SendMessage("Hi");
                 });
+
+            discord.ExecuteAndWait(async () =>
+            {
+                await discord.Connect("MjQ3NDkwNTc0MTkyNDc2MTYx.CwqEfw.GySquE25grhI_WXXbx1mXD5_RHI", TokenType.Bot);
+            });
         }
 
 
